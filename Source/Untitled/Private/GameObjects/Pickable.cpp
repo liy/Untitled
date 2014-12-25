@@ -14,8 +14,6 @@ APickable::APickable(const FObjectInitializer& objectInitializer) : Super(object
 	Mesh = objectInitializer.CreateDefaultSubobject<UStaticMeshComponent>(this, TEXT("Mesh"));
 	Mesh->SetSimulatePhysics(true);
 	Mesh->AttachTo(RootComponent);
-
-	InventoryInfo = FInventoryStruct();
 }
 
 void APickable::OnCollection(ACharacterBase& character){
