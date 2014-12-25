@@ -1,6 +1,7 @@
 // Copyright 1998-2014 Epic Games, Inc. All Rights Reserved.
 #pragma once
 #include "GameFramework/Character.h"
+#include "Inventory.h"
 #include "CharacterBase.generated.h"
 
 UCLASS(config=Game)
@@ -46,12 +47,17 @@ protected:
 public:
 	ACharacterBase(const FObjectInitializer& objectInitializer);
 
+	UPROPERTY(BlueprintReadOnly, Category=Inventory)
+	class UInventory* Inventory;
+
 	UPROPERTY(VisibleAnywhere, BLueprintReadOnly, Category=Action)
 	class USphereComponent* CollectionSphere;
 
 	// Maximum number of jump can performed in the air.
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Jump)
 	uint16 MaxJumps;
+
+	virtual void BeginPlay() override;
 
 	/** Returns SideViewCameraComponent subobject **/
 	FORCEINLINE class UCameraComponent* GetSideViewCameraComponent() const { return SideViewCameraComponent; }

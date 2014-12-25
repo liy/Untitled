@@ -27,8 +27,9 @@ public:
 	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly)
 	class USphereComponent* CollectionSphere;
 
+	// The inventory related information, thumbnail, etc.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	FInventoryStruct InventoryInfo;
+	FInventoryItemInfo InventoryInfo;
 
 	// In order to make OnCollection polymorphism in both C++ and BP, we need separate implementations.
 	// Therefore, I cannot use BlueprintNativeEvent, since it does not allow virtual declaration.
@@ -37,4 +38,7 @@ public:
 	UFUNCTION(BlueprintImplementableEvent, meta=(FriendlyName="OnCollection"))
 	virtual void ReceiveOnCollection();
 	virtual void OnCollection(ACharacterBase& character);
+
+	// Setup blueprint related stuff here, e.g., the FPickableInfoStruct struct.
+	virtual void BeginPlay() override;
 };

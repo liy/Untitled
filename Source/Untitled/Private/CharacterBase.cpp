@@ -41,6 +41,8 @@ ACharacterBase::ACharacterBase(const FObjectInitializer& objectInitializer)
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named MyCharacter (to avoid direct content references in C++)
 	
+	Inventory = new UInventory(10);
+
 	// Default max number of the jumps allowed in the air
 	MaxJumps = 2;
 	JumpCounter = 0;
@@ -51,6 +53,11 @@ ACharacterBase::ACharacterBase(const FObjectInitializer& objectInitializer)
 	CollectionSphere = objectInitializer.CreateDefaultSubobject<USphereComponent>(this, TEXT("CollectionSphere"));
 	CollectionSphere->SetSphereRadius(100.0f);
 	CollectionSphere->AttachTo(RootComponent);
+}
+
+void ACharacterBase::BeginPlay()
+{
+	Inventory->Clear();
 }
 
 void ACharacterBase::SetupPlayerInputComponent(class UInputComponent* inputComponent)

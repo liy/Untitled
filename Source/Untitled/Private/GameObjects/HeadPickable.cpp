@@ -16,6 +16,7 @@ void AHeadPickable::OnCollection(ACharacterBase& character)
 	// TODO: chanage head etc. Update the inventory
 	GEngine->AddOnScreenDebugMessage(-1, 2, FColor::Red, TEXT("HEAD onpickup"));
 	GEngine->AddOnScreenDebugMessage(-1, 2, FColor::Red, FString::Printf(TEXT("%d"), bIsActive));
+	GEngine->AddOnScreenDebugMessage(-1, 2, FColor::Green, this->InventoryInfo.Info.ToString());
 
 	bIsActive = false;
 	this->Destroy();

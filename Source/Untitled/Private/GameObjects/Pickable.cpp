@@ -16,7 +16,24 @@ APickable::APickable(const FObjectInitializer& objectInitializer) : Super(object
 	Mesh->AttachTo(RootComponent);
 }
 
-void APickable::OnCollection(ACharacterBase& character){
+void APickable::BeginPlay()
+{
+	// Cannot put the Class assignment in the constructor, since GetClass() only return the 
+	// C++ class in the constructor, not the final blueprint class.
+	InventoryInfo.Class = GetClass();
+
+	Super::BeginPlay();
+}
+
+void APickable::OnCollection(ACharacterBase& character)
+{
+	// I guess this is a copy assignment??
+	// I guess InventoryInfo will be destroyed if this actor is destroyed??
+	FInventoryItemInfo* Info = new FInventoryItemInfo();
+	Info = &InventoryInfo;
+	// Add the Pickable Information to the inventory
+	character.Inventory->Add(*Info);
+
 	// Call blueprint OnCollection native event.
 	ReceiveOnCollection();
 }
