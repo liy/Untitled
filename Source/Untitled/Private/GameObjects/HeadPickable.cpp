@@ -11,13 +11,10 @@ AHeadPickable::AHeadPickable(const FObjectInitializer& objectInitializer) : Supe
 
 void AHeadPickable::OnCollection(ACharacterBase& character)
 {
-	Super::OnCollection(character);
-
 	// TODO: chanage head etc. Update the inventory
 	GEngine->AddOnScreenDebugMessage(-1, 2, FColor::Red, TEXT("HEAD onpickup"));
 	GEngine->AddOnScreenDebugMessage(-1, 2, FColor::Red, FString::Printf(TEXT("%d"), bIsActive));
-	GEngine->AddOnScreenDebugMessage(-1, 2, FColor::Green, this->InventoryInfo.Info.ToString());
+	GEngine->AddOnScreenDebugMessage(-1, 2, FColor::Green, InventoryItemInfo.Info.ToString());
 
-	bIsActive = false;
-	this->Destroy();
+	Super::OnCollection(character);
 }

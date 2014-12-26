@@ -4,7 +4,6 @@
 
 #include "GameFramework/Actor.h"
 #include "CharacterBase.h"
-#include "StructLibrary.h"
 #include "Pickable.generated.h"
 
 /**
@@ -29,7 +28,7 @@ public:
 
 	// The inventory related information, thumbnail, etc.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	FInventoryItemInfo InventoryInfo;
+	FInventoryItemInfo InventoryItemInfo;
 
 	// In order to make OnCollection polymorphism in both C++ and BP, we need separate implementations.
 	// Therefore, I cannot use BlueprintNativeEvent, since it does not allow virtual declaration.
@@ -39,6 +38,6 @@ public:
 	virtual void ReceiveOnCollection();
 	virtual void OnCollection(ACharacterBase& character);
 
-	// Setup blueprint related stuff here, e.g., the FPickableInfoStruct struct.
+	// Setup blueprint related stuff here, e.g., the FInventoryItemInfo's Class property.
 	virtual void BeginPlay() override;
 };
