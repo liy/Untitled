@@ -16,5 +16,7 @@ void AHeadPickable::OnCollection(ACharacterBase& character)
 	GEngine->AddOnScreenDebugMessage(-1, 2, FColor::Red, FString::Printf(TEXT("%d"), bIsActive));
 	GEngine->AddOnScreenDebugMessage(-1, 2, FColor::Green, InventoryItemInfo.Info.ToString());
 
+	UGameplayStatics::GetPlayerCharacter(GetWorld(), 0);
+
 	Super::OnCollection(character);
 }

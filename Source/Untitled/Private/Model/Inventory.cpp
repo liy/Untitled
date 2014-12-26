@@ -12,12 +12,12 @@ UInventory::UInventory() : UInventory(10)
 
 }
 
-void UInventory::Add_Implementation(FInventoryItemInfo item)
+void UInventory::Add_Implementation(FInventoryItemInfo info)
 {
-	Items.Add(item);
+	Items.Add(info);
 }
 
-void UInventory::Remove_Implementation(FInventoryItemInfo item)
+void UInventory::Remove_Implementation(const FInventoryItemInfo& item)
 {
 	Items.Remove(item);
 }

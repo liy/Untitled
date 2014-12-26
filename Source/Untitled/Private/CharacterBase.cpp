@@ -3,6 +3,7 @@
 #include "Untitled.h"
 #include "CharacterBase.h"
 #include "Pickable.h"
+#include "Inventory.h"
 
 ACharacterBase::ACharacterBase(const FObjectInitializer& objectInitializer)
 	: Super(objectInitializer)

@@ -13,7 +13,10 @@ class UNTITLED_API UInventoryWidget : public UUserWidget
 {
 	GENERATED_BODY()
 	
+public:
+
+	UInventoryWidget(const FObjectInitializer& objectInitializer);
 	
-	
-	
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	class UInventory* Inventory;
 };

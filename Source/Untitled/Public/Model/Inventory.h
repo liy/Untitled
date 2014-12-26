@@ -22,7 +22,7 @@ struct FInventoryItemInfo
 
 	// Information about the inventory item
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		FText Info;
+	FText Info;
 
 	// Inventory.Remove(item) requires implementation of the comparison operator.
 	FORCEINLINE bool operator==(const FInventoryItemInfo& item) const
@@ -54,7 +54,7 @@ public:
 	void Add(FInventoryItemInfo item);
 
 	UFUNCTION(BlueprintNativeEvent, Category = Manipulation)
-	void Remove(FInventoryItemInfo item);
+	void Remove(const FInventoryItemInfo& item);
 
 	UFUNCTION(BlueprintNativeEvent, Category = Manipulation)
 	void RemoveAt(int32 index);

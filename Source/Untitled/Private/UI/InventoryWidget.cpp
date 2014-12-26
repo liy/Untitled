@@ -3,6 +3,9 @@
 #include "Untitled.h"
 #include "InventoryWidget.h"
 
+UInventoryWidget::UInventoryWidget(const FObjectInitializer& objectInitializer) : Super(objectInitializer)
+{
 
+}
 
 

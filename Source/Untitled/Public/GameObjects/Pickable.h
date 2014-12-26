@@ -3,7 +3,7 @@
 #pragma once
 
 #include "GameFramework/Actor.h"
-#include "CharacterBase.h"
+#include "Inventory.h"
 #include "Pickable.generated.h"
 
 /**
@@ -13,7 +13,7 @@ UCLASS()
 class UNTITLED_API APickable : public AActor
 {
 	GENERATED_BODY()
-	
+
 public:
 	APickable(const FObjectInitializer& objectInitializer);
 
@@ -27,6 +27,9 @@ public:
 	class USphereComponent* CollectionSphere;
 
 	// The inventory related information, thumbnail, etc.
+	// Note that, this allocate the memory for FInventoryItemInfo type, and not like reference declaration that requires initialization
+	// this way we can directly update the data in FInventoryItemInfo without assignment(we only assign class in BeginPlay(), others are assigned in blueprint)
+	// We could use pointer, but Unreal Engine seems does not like structure pointer to be used as UPROPERTY.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FInventoryItemInfo InventoryItemInfo;
 
@@ -36,7 +39,7 @@ public:
 	// Note that, this instance is still active by this time.
 	UFUNCTION(BlueprintImplementableEvent, meta=(FriendlyName="OnCollection"))
 	virtual void ReceiveOnCollection();
-	virtual void OnCollection(ACharacterBase& character);
+	virtual void OnCollection(class ACharacterBase& character);
 
 	// Setup blueprint related stuff here, e.g., the FInventoryItemInfo's Class property.
 	virtual void BeginPlay() override;

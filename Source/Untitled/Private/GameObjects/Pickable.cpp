@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "Untitled.h"
+#include "CharacterBase.h"
 #include "Pickable.h"
 
 
@@ -27,12 +28,10 @@ void APickable::BeginPlay()
 
 void APickable::OnCollection(ACharacterBase& character)
 {
-	// I guess this is a copy assignment??
-	// I guess InventoryInfo will be destroyed if this actor is destroyed??
-	FInventoryItemInfo* Info = new FInventoryItemInfo();
-	Info = &InventoryItemInfo;
-	// Add the Pickable Information to the inventory
-	character.Inventory->Add(*Info);
+	// Add the Pickable Information to the inventory, I guess InventoryItemInfo should be copied.
+	// Since Inventory.Add(InventoryItemInfo item) copy the parameter by default. (It is pass by value, Not pass by reference or pointer)
+	// And, I assume, that this actor's InventoryItemInfo will be destroyed once this actor is destroyed.
+	character.Inventory->Add(InventoryItemInfo);
 
 	// Call blueprint OnCollection native event.
 	ReceiveOnCollection();
