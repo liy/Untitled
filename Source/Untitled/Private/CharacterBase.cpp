@@ -4,6 +4,7 @@
 #include "CharacterBase.h"
 #include "Pickable.h"
 #include "Inventory.h"
+#include "CharacterController.h"
 
 ACharacterBase::ACharacterBase(const FObjectInitializer& objectInitializer)
 	: Super(objectInitializer)
@@ -143,4 +144,9 @@ void ACharacterBase::CollectPickUps()
 			pickable->OnCollection(*this);
 		}
 	}
+}
+
+ACharacterController* ACharacterBase::GetCharacterController() const
+{
+	return Cast<ACharacterController>(GetController());
 }

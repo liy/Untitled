@@ -8,6 +8,7 @@
 /.ue4dependencies
 
 /Binaries
+/Plugins
 /DerivedDataCache
 /Intermediate
 /Saved

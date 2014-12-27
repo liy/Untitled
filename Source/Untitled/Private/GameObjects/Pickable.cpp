@@ -30,10 +30,9 @@ void APickable::BeginPlay()
 void APickable::OnCollection(ACharacterBase& character)
 {
 	// Add the Pickable Information to the inventory, I guess InventoryItemInfo should be copied.
-	// Since Inventory.Add(InventoryItemInfo item) copy the parameter by default. (It is pass by value, Not pass by reference or pointer)
+	// Since Inventory.Add(InventoryItemInfo item) copy the parameter by default. (It is pass by value, not pass by reference or pointer)
 	// And, I assume, that this actor's InventoryItemInfo will be destroyed once this actor is destroyed.
-	//character.Inventory->Add(InventoryItemInfo);
-	Cast<ACharacterController>(character.GetController())->Inventory->Add(InventoryItemInfo);
+	character.GetCharacterController()->Inventory->Add(InventoryItemInfo);
 
 	// Call blueprint OnCollection native event.
 	ReceiveOnCollection();

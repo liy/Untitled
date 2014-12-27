@@ -14,5 +14,9 @@ AUntitledGameMode::AUntitledGameMode(const FObjectInitializer& objectInitializer
 		DefaultPawnClass = PlayerPawnBPClass.Class;
 	}
 
-	PlayerControllerClass = ACharacterController::StaticClass();
+	static ConstructorHelpers::FClassFinder<APlayerController> ControllerClassObject(TEXT("/Game/Blueprints/CharacterControllerBP"));
+	if (ControllerClassObject.Class != NULL)
+	{
+		PlayerControllerClass = ControllerClassObject.Class;
+	}
 }

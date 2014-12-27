@@ -19,6 +19,11 @@ public:
 	UPROPERTY(BlueprintReadOnly, Category = Inventory)
 	class UInventory* Inventory;
 
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = BPClasses)
+	UClass* InventoryWidgetBP;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Inventory)
+	class UInventoryWidget* InventoryWidget;
 
 	virtual void BeginPlay() override;
 };

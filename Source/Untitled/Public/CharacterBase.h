@@ -63,6 +63,10 @@ public:
 	UFUNCTION(BlueprintCallable, Category=Action)
 	void CollectPickUps();
 
+	// Directly get the CharacterController, fed up with casting...
+	UFUNCTION(BlueprintCallable, Category = "Character")
+	class ACharacterController* GetCharacterController() const;
+
 private:
 	/**
 	 * Handle the character orientation
