@@ -42,9 +42,17 @@ ACharacterBase::ACharacterBase(const FObjectInitializer& objectInitializer)
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named MyCharacter (to avoid direct content references in C++)
 	
+
+
 	// I cannot use "new", have to use CreateDefaultSubobject?!?!?
-	//Inventory = new UInventory();
+	// Inventory = new UInventory();
+	 
+	// Cannot use ConstructObject?!?!? Is it because I'm in the class constructor?! I have to use CreateDefaultSubobject in constructor for all Unreal Object!?!?!
+	// If I'm not in the constructor, I can use ConstructObject?!?!??!?!
+	// Inventory = ConstructObject<UInventory>(UInventory::StaticClass(), this);
+	
 	Inventory = objectInitializer.CreateDefaultSubobject<UInventory>(this, TEXT("Inventory"));
+	
 
 	// Default max number of the jumps allowed in the air
 	MaxJumps = 2;

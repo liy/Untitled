@@ -46,7 +46,8 @@ protected:
 public:
 	ACharacterBase(const FObjectInitializer& objectInitializer);
 
-	UPROPERTY(BlueprintReadOnly, Category=Inventory)
+	//UPROPERTY(BlueprintReadOnly, Category=Inventory)
+	UPROPERTY()
 	class UInventory* Inventory;
 
 	UPROPERTY(VisibleAnywhere, BLueprintReadOnly, Category=Action)

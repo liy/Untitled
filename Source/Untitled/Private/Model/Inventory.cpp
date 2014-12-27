@@ -5,10 +5,9 @@
 
 UInventory::UInventory(int32 maxSize) : Super(), MaxSize(maxSize)
 {
-	Items = TArray<FInventoryItemInfo>();
 }
 
-UInventory::UInventory() : UInventory(20)
+UInventory::UInventory() : UInventory(10)
 {
 
 }
