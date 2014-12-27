@@ -13,7 +13,12 @@ class UNTITLED_API ACharacterController : public APlayerController
 {
 	GENERATED_BODY()
 	
+public:
+	ACharacterController(const FObjectInitializer& objectInitializer);
 	
-	
-	
+	UPROPERTY(BlueprintReadOnly, Category = Inventory)
+	class UInventory* Inventory;
+
+
+	virtual void BeginPlay() override;
 };

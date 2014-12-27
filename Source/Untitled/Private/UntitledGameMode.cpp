@@ -1,6 +1,7 @@
 // Copyright 1998-2014 Epic Games, Inc. All Rights Reserved.
 
 #include "Untitled.h"
+#include "CharacterController.h"
 #include "UntitledGameMode.h"
 
 AUntitledGameMode::AUntitledGameMode(const FObjectInitializer& objectInitializer)
@@ -12,4 +13,6 @@ AUntitledGameMode::AUntitledGameMode(const FObjectInitializer& objectInitializer
 	{
 		DefaultPawnClass = PlayerPawnBPClass.Class;
 	}
+
+	PlayerControllerClass = ACharacterController::StaticClass();
 }

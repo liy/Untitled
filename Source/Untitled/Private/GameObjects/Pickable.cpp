@@ -2,6 +2,7 @@
 
 #include "Untitled.h"
 #include "CharacterBase.h"
+#include "CharacterController.h"
 #include "Pickable.h"
 
 
@@ -31,7 +32,8 @@ void APickable::OnCollection(ACharacterBase& character)
 	// Add the Pickable Information to the inventory, I guess InventoryItemInfo should be copied.
 	// Since Inventory.Add(InventoryItemInfo item) copy the parameter by default. (It is pass by value, Not pass by reference or pointer)
 	// And, I assume, that this actor's InventoryItemInfo will be destroyed once this actor is destroyed.
-	character.Inventory->Add(InventoryItemInfo);
+	//character.Inventory->Add(InventoryItemInfo);
+	Cast<ACharacterController>(character.GetController())->Inventory->Add(InventoryItemInfo);
 
 	// Call blueprint OnCollection native event.
 	ReceiveOnCollection();
