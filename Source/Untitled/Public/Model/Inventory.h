@@ -47,16 +47,16 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category=Property)
 	int32 MaxSize;
 
-	UPROPERTY(BlueprintReadOnly, Category = Manipulation)
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Property)
 	TArray<FInventoryItemInfo> Items;
 
-	UFUNCTION(BlueprintNativeEvent, Category = Manipulation)
+	UFUNCTION(BlueprintCallable, Category = Manipulation)
 	void Add(FInventoryItemInfo item);
 
-	UFUNCTION(BlueprintNativeEvent, Category = Manipulation)
+	UFUNCTION(BlueprintCallable, Category = Manipulation)
 	void Remove(const FInventoryItemInfo& item);
 
-	UFUNCTION(BlueprintNativeEvent, Category = Manipulation)
+	UFUNCTION(BlueprintCallable, Category = Manipulation)
 	void RemoveAt(int32 index);
 
 	UFUNCTION(BlueprintCallable, Category=Manipulation)

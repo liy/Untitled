@@ -17,6 +17,6 @@ public:
 
 	UInventoryWidget(const FObjectInitializer& objectInitializer);
 	
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-	class UInventory* Inventory;
+	//UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	//class UInventory* Inventory;
 };

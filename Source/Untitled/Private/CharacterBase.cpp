@@ -42,7 +42,9 @@ ACharacterBase::ACharacterBase(const FObjectInitializer& objectInitializer)
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named MyCharacter (to avoid direct content references in C++)
 	
-	Inventory = new UInventory(10);
+	// I cannot use "new", have to use CreateDefaultSubobject?!?!?
+	//Inventory = new UInventory();
+	Inventory = objectInitializer.CreateDefaultSubobject<UInventory>(this, TEXT("Inventory"));
 
 	// Default max number of the jumps allowed in the air
 	MaxJumps = 2;
@@ -58,6 +60,8 @@ ACharacterBase::ACharacterBase(const FObjectInitializer& objectInitializer)
 
 void ACharacterBase::BeginPlay()
 {
+	Super::BeginPlay();
+	
 	Inventory->Clear();
 }
 

@@ -5,29 +5,30 @@
 
 UInventory::UInventory(int32 maxSize) : Super(), MaxSize(maxSize)
 {
+	Items = TArray<FInventoryItemInfo>();
 }
 
-UInventory::UInventory() : UInventory(10)
+UInventory::UInventory() : UInventory(20)
 {
 
 }
 
-void UInventory::Add_Implementation(FInventoryItemInfo info)
+void UInventory::Add(FInventoryItemInfo info)
 {
 	Items.Add(info);
 }
 
-void UInventory::Remove_Implementation(const FInventoryItemInfo& item)
+void UInventory::Remove(const FInventoryItemInfo& item)
 {
 	Items.Remove(item);
 }
 
-void UInventory::RemoveAt_Implementation(int32 index)
+void UInventory::RemoveAt(int32 index)
 {
 	Items.RemoveAt(index);
 }
 
 void UInventory::Clear()
 {
-	Items.Reset(MaxSize);
+	Items.Reset();
 }
