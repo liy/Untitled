@@ -3,33 +3,8 @@
 #pragma once
 
 #include "Object.h"
+#include "PickupDataLibrary.h" 
 #include "Inventory.generated.h"
-
-/**
-* For inventory item information
-*/
-USTRUCT(BlueprintType)
-struct FInventoryItemInfo
-{
-	GENERATED_USTRUCT_BODY()
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-	UClass* Class;
-
-	// Thumbnail of the inventory item
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	class UTexture2D* Thumbnail;
-
-	// Information about the inventory item
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	FText Info;
-
-	// Inventory.Remove(item) requires implementation of the comparison operator.
-	FORCEINLINE bool operator==(const FInventoryItemInfo& item) const
-	{
-		return Class == item.Class && Thumbnail == item.Thumbnail && Info.EqualTo(item.Info);
-	}
-};
 
 /**
  * 
@@ -48,13 +23,13 @@ public:
 	int32 MaxSize;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Property)
-	TArray<FInventoryItemInfo> Items;
+	TArray<FPickupData> DataEntries;
 
 	UFUNCTION(BlueprintCallable, Category = Manipulation)
-	void Add(FInventoryItemInfo item);
+	void Add(const FPickupData item);
 
 	UFUNCTION(BlueprintCallable, Category = Manipulation)
-	void Remove(const FInventoryItemInfo& item);
+	void Remove(const FPickupData& item);
 
 	UFUNCTION(BlueprintCallable, Category = Manipulation)
 	void RemoveAt(int32 index);

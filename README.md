@@ -6,8 +6,15 @@ Dynamic head replacement, and other mesh exchange animation related to the looti
 ## Inventory System
 Player inventory UI and other related UI
 
+## Spawn System
+Pickup spawn, NPC spawn. 
+
 ## Loot System part 1
 Naive loot system, can be just hard coded
+
+
+
+## Craft System
 
 
 

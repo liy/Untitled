@@ -12,22 +12,22 @@ UInventory::UInventory() : UInventory(10)
 
 }
 
-void UInventory::Add(FInventoryItemInfo info)
+void UInventory::Add(const FPickupData data)
 {
-	Items.Add(info);
+	DataEntries.Add(data);
 }
 
-void UInventory::Remove(const FInventoryItemInfo& item)
+void UInventory::Remove(const FPickupData& data)
 {
-	Items.Remove(item);
+	DataEntries.Remove(data);
 }
 
 void UInventory::RemoveAt(int32 index)
 {
-	Items.RemoveAt(index);
+	DataEntries.RemoveAt(index);
 }
 
 void UInventory::Clear()
 {
-	Items.Reset();
+	DataEntries.Reset();
 }

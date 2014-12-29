@@ -3,6 +3,7 @@
 #pragma once
 
 #include "Blueprint/UserWidget.h"
+#include "PickupDataLibrary.h"
 #include "InventoryWidget.generated.h"
 
 /**
@@ -17,13 +18,29 @@ public:
 
 	UInventoryWidget(const FObjectInitializer& objectInitializer);
 	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category=Property)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category=Custom)
 	bool IsActive;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Custom)
 	class UInventory* Inventory;
 
-	class ACharacterController* Owner;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Custom)
+	TArray<class UInventorySlotWidget*> Slots;
+
+	UFUNCTION(BlueprintCallable, Category=Custom)
+	void Add(const FPickupData& data);
+
+	UFUNCTION(BlueprintCallable, Category=Custom)
+	void Remove(const FPickupData& data);
+
+	UFUNCTION(BlueprintCallable, Category=Custom)
+	void RemoveAt(int32 index);
+
+	UFUNCTION(BlueprintImplementableEvent, Category = Custom)
+	void Refresh();
+
+	// Final specific widget and do something about it.
+	//virtual TSharedRef<SWidget> RebuildWidget() override;
 
 	/**
 	 * Construct BlueprintNativeEvent implementation. Setup the Alignment.

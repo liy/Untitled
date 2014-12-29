@@ -1,22 +1,16 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "Untitled.h"
-#include "Inventory.h"
-#include "InventoryWidget.h"
 #include "CharacterController.h"
 
+#include "Pickup.h"
+#include "CashPickup.h"
+#include "InventoryWidget.h"
 
 ACharacterController::ACharacterController(const FObjectInitializer& objectInitializer) : Super(objectInitializer)
 {
-	// I cannot use "new", have to use CreateDefaultSubobject?!?!?
-	// Inventory = new UInventory();
-	// Cannot use ConstructObject?!?!? Is it because I'm in the class constructor?! I have to use CreateDefaultSubobject in constructor for all Unreal Object!?!?!
-	// If I'm not in the constructor, I can use ConstructObject?!?!??!?!
-	// Inventory = ConstructObject<UInventory>(UInventory::StaticClass(), this);
-	Inventory = objectInitializer.CreateDefaultSubobject<UInventory>(this, TEXT("Inventory"));
-
 	// Setup the InventoryWidgetBP class, so we can add the widget instance to the viewport in BeginPlay()
-	static ConstructorHelpers::FClassFinder<UUserWidget> classObject(TEXT("/Game/UMG/InventoryWidgetBP"));
+	static ConstructorHelpers::FClassFinder<UUserWidget> classObject(TEXT("/Game/UI/InventoryWidgetBP"));
 	if (classObject.Class != NULL)
 	{
 		InventoryWidgetBP = classObject.Class;
@@ -25,10 +19,52 @@ ACharacterController::ACharacterController(const FObjectInitializer& objectIniti
 
 void ACharacterController::BeginPlay()
 {
-	Inventory->Clear();
-
 	InventoryWidget = CreateWidget<UInventoryWidget>(this, InventoryWidgetBP);
 	InventoryWidget->AddToViewport();
 
 	Super::BeginPlay();
+}
+
+void ACharacterController::Collect(APickup* pickup)
+{
+	ACashPickup* cashPickup = Cast<ACashPickup>(pickup);
+	if (cashPickup)
+	{
+		CashIn(cashPickup->Value);
+	}
+	else
+	{
+		StorePickup(pickup);
+	}
+}
+
+void ACharacterController::Drop(FPickupData& data)
+{
+	InventoryWidget->Remove(data);
+
+	// TODO: Spawn a new pickup on the ground, or destroy the pickup
+}
+
+void ACharacterController::StorePickup(APickup* pickup)
+{
+	InventoryWidget->Add(pickup->Data);
+}
+
+void ACharacterController::CashIn(int32 value)
+{
+	Wealth += value;
+
+	// TODO: update UI
+}
+
+bool ACharacterController::CashOut(int32 value)
+{
+	if (Wealth >= value){
+		Wealth -= value;
+
+		// TODO: update UI
+		return true;
+	}
+
+	return false;
 }

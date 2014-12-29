@@ -2,7 +2,7 @@
 
 #include "Untitled.h"
 #include "CharacterBase.h"
-#include "Pickable.h"
+#include "Pickup.h"
 #include "Inventory.h"
 #include "CharacterController.h"
 
@@ -138,10 +138,10 @@ void ACharacterBase::CollectPickUps()
 
 	for (AActor* actor : actors)
 	{
-		APickable* const pickable = Cast<APickable>(actor);
-		if (pickable && !pickable->IsPendingKill() && pickable->bIsActive)
+		APickup* const pickup = Cast<APickup>(actor);
+		if (pickup && !pickup->IsPendingKill() && pickup->bIsActive)
 		{
-			pickable->OnCollection(*this);
+			pickup->OnCollection(*GetCharacterController());
 		}
 	}
 }
